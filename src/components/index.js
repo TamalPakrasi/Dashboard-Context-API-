@@ -1,3 +1,4 @@
-import Navbar from "./Navbar.jsx";
+import Navbar from "./Navbar.jsx"
+import Loading from "./Loading.jsx"
 
-export { Navbar };
+export { Navbar, Loading };

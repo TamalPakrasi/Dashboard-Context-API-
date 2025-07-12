@@ -1,16 +1,18 @@
-import { useState } from "react";
-import { AuthContext } from "./contexts/Auth.context.js";
-import { Navbar } from "./components";
+import { Suspense, useState } from "react";
+import { AuthContextProvider } from "./contexts/Auth.context.js";
 import { Outlet } from "react-router";
+import { Loading, Navbar } from "./components";
 
 function Layout() {
   const [isAuthenticate, setIsAuthenticate] = useState(false);
 
   return (
-    <AuthContext value={{ isAuthenticate, setIsAuthenticate }}>
+    <AuthContextProvider value={{ isAuthenticate, setIsAuthenticate }}>
       <Navbar />
-      <Outlet />
-    </AuthContext>
+      <Suspense fallback={<Loading />}>
+        <Outlet />
+      </Suspense>
+    </AuthContextProvider>
   );
 }
 
