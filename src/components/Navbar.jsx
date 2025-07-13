@@ -1,11 +1,11 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import useAuth from "../contexts/Auth.context.js";
 
 function Navbar() {
-  const { isAuthenticate } = useAuth();
+  const { isAuthenticate, setIsAuthenticate } = useAuth();
 
   return (
-    <div className="navbar bg-base-100 shadow-sm px-6 sticky top-0 left-0">
+    <div className="navbar bg-base-100 shadow-sm px-6 sticky top-0 left-0 z-100">
       <div className="navbar-start">
         <span className="text-xl font-bold text-violet-500">Auth Project</span>
       </div>
@@ -39,9 +39,12 @@ function Navbar() {
       </div>
       <div className="navbar-end">
         {isAuthenticate ? (
-          <Link className="btn text-violet-500" to="/logout">
+          <button
+            className="btn text-violet-500"
+            onClick={() => setIsAuthenticate(false)}
+          >
             Log out
-          </Link>
+          </button>
         ) : (
           <Link className="btn text-violet-500" to="/login">
             Log in
